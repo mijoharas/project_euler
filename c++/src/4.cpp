@@ -7,6 +7,7 @@
 using namespace std;
 
 int isPalindome(int num){
+    // I'm guessing this bits slow but I'm not sure I care.
     string tmp = to_string(num);
     string tmp2 = tmp;
     reverse(tmp2.begin(), tmp2.end());
@@ -18,7 +19,7 @@ int main(int argc, char *argv[])
     int max_palindrome = 0;
     int test;
     for (int i = 1; i < 1000; i++) {
-        for (int j = 1; j < 1000; j++) {
+        for (int j = i; j < 1000; j++) {
             test = i*j;
             if (isPalindome(test)) {
                 if (test > max_palindrome)
