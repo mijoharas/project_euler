@@ -10,8 +10,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 $(BINDIR)/%: $(OBJDIR)/%.o
 	$(CC) -o $@ $< $(CFLAGS)
 
-%: $(BINDIR)/%
-.PHONY: $(patsubst $(SRCDIR)/%.cpp,%,$(wildcard $(SRCDIR)/*.cpp))
+# %: $(BINDIR)/%
+# .PHONY: $(patsubst $(SRCDIR)/%.cpp,%,$(wildcard $(SRCDIR)/*.cpp))
+
+TARGETS=$(patsubst $(SRCDIR)/%.cpp,%,$(wildcard $(SRCDIR)/*.cpp))
+
+$(TARGETS): %: $(BINDIR)/%
+.PHONY: $(TARGETS)
 
 clean:
 	rm -f $(BINDIR)/* $(OBJDIR)/*
