@@ -3,5 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hello world")
+	var x int
+	for y := 0; y < 1000; y++ {
+		if y%3 == 0 || y%5 == 0 {
+			x += y
+		}
+	}
+	fmt.Println(x)
 }
