@@ -2,6 +2,8 @@
 import Text.Regex
 import Data.Char
 import Data.List
+import Data.Monoid
+import Control.Applicative
 num_string = reverse . dropWhile isSpace . reverse $ unlines
                      ["08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08",
                       "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00",
@@ -39,9 +41,16 @@ south = transpose
 -- cool function for getting the diagonals (bit of wastage with double middle row)
 southwest x = (diagFunc x) ++ (diagFunc . transpose $ x)
               where diagFunc = transpose . zipWith (drop) [0..]
+-- using mappend with the monoid list (++) Data.Monoid required
+southwest2 = diagFunc `mappend` (diagFunc . transpose)
+  where diagFunc = transpose . zipWith (drop) [0..]
+-- requires Control.Applicative fmap over the sequentially aplied diagFuncs
+southwest3 = (++) <$> diagFunc <*> (diagFunc . transpose)
+  where diagFunc = transpose . zipWith (drop) [0..]
 southeast = southwest . reverse
 
 -- this is using map ($something) to apply all of the functions to something.
 directions = map ($nums) [east, south, southeast, southwest]
 
 ans = maximum $ concatMap (my_prod) directions
+main = print ans
