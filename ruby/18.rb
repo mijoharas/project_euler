@@ -17,12 +17,12 @@ lines = 15
 num_lists=[]
 lines.times {num_lists.push([])}
 i=0;x=0
-nums.length.times {if i>x;x+=1; i=0;end; num_lists[x]<<nums.shift.to_i; i+=1}
+nums.length.times {if i>x;x+=1; i=0;end; num_lists[x] << nums.shift.to_i; i+=1}
 
 num_lists.reverse.each_with_index {|x,i|
-  x.each_with_index {|y,j| 
-    # p [i,j,x,y, "outside", (j<num_lists.length-1-i)]
-    # p [j,num_lists.length,i, (j<num_lists.length-i)]
+  x.each_with_index {|y,j|
+    p [i,j,x,y, "outside", (j<num_lists.length-1-i)]
+    p [j,num_lists.length,i, (j<num_lists.length-i)]
     if (j<num_lists.length-1-i)
       p [num_lists.length-2-i,j,num_lists[num_lists.length-1-i][j..j+1].max]
       num_lists[num_lists.length-2-i][j]+=num_lists[num_lists.length-1-i][j..j+1].max
