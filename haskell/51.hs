@@ -5,7 +5,7 @@ import qualified Data.Sequence as S
 -- Wow, lenses are crazy, still don't understand them
 import Control.Lens
 
-numberPrimeReplacements num replaceIndexes = length $ filter isPrime newNumbers
+numberPrimeReplacements num replaceIndexes = filter isPrime newNumbers
   where newNumbers = map (unDigits 10 . replaceIndices replaceIndexes (digits 10 num)) (iterList replaceIndexes)
         iterList rInd
           | elem 0 rInd = [1..9]
@@ -17,5 +17,7 @@ replaceIndices indices list num = over (elements (flip elem indices)) (const num
 
 indexPermutations num = tail $ subsequences [0..((length (digits 10 num)) - 1)]
 -- pretty damn slow but I learnt something so I'm happy with it
-result = head [x | x <- primes,
-               (maximum $ map (numberPrimeReplacements x) (indexPermutations x)) == 8]
+--- dammit, still not right, almost there
+result = head [minimum nums | x <- primes,
+               let nums = (filter (\y -> length (numberPrimeReplacements x y) == 8) (indexPermutations x)),
+                     nums /= []]
