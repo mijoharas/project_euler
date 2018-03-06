@@ -3,7 +3,7 @@ import Data.Numbers.Primes
 import Data.List
 import qualified Data.Sequence as S
 -- Wow, lenses are crazy, still don't understand them
-import Control.Lens
+-- import Control.Lens
 
 numberPrimeReplacements num replaceIndexes = filter isPrime newNumbers
   where newNumbers = map (unDigits 10 . replaceIndices replaceIndexes (digits 10 num)) (iterList replaceIndexes)
