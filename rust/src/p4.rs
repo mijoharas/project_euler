@@ -1,4 +1,4 @@
-pub fn main() {
+pub fn solve() {
     let range = 100..999;
     let range2 = &range.clone();
     let numbers = range.flat_map(move |num1| range2.clone().map(move |num2| num1 * num2));

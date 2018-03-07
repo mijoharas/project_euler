@@ -1,4 +1,4 @@
-pub fn main() {
+pub fn solve() {
     let number: i64 = 600851475143;
     let root: i64 = nearest_integer_root(number);
     let prime_factors: i64 = (1..root)

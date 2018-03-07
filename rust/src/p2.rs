@@ -1,4 +1,4 @@
-fn main() {
+fn solve() {
     let answer: u64 = iterative_fibonacci()
         .take_while(|num| *num < 4000000)
         .filter(|num| num % 2 == 0)
