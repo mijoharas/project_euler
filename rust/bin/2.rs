@@ -1,5 +1,6 @@
 fn main() {
-    let answer: u64 = iterative_fibonacci().take_while(|num| *num < 4000000)
+    let answer: u64 = iterative_fibonacci()
+        .take_while(|num| *num < 4000000)
         .filter(|num| num % 2 == 0)
         .sum();
     println!("{}", answer);
@@ -7,7 +8,7 @@ fn main() {
 
 pub struct Fibonacci {
     curr: u64,
-    next: u64
+    next: u64,
 }
 
 impl Iterator for Fibonacci {
@@ -23,6 +24,5 @@ impl Iterator for Fibonacci {
 }
 
 fn iterative_fibonacci() -> Fibonacci {
-    Fibonacci {curr: 1, next: 1}
+    Fibonacci { curr: 1, next: 1 }
 }
-

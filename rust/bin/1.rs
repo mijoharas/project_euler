@@ -1,6 +1,5 @@
 fn main() {
-    let answer: i32 = (1..1000).filter(|num| predicate(num))
-        .fold(0, |a,b| a + b);
+    let answer: i32 = (1..1000).filter(|num| predicate(num)).fold(0, |a, b| a + b);
     println!("{}", answer);
 }
 
